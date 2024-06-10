@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="notes_report"
+              pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20"
+              topMargin="20" bottomMargin="20" uuid="d6d5f4b2-1c0a-4e1b-8b7e-6d0a3a2d0a5f">
+
+    <queryString>
+        <![CDATA[SELECT id, title, content FROM notes]]>
+    </queryString>
+
+    <field name="id" class="java.lang.String"/>
+    <field name="title" class="java.lang.String"/>
+    <field name="content" class="java.lang.String"/>
+
+    <title>
+        <band height="50">
+            <textField>
+                <reportElement x="0" y="0" width="555" height="50"/>
+                <textElement>
+                    <font size="20"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Note Report"]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+
+
+    <columnHeader>
+        <band height="20">
+            <staticText>
+                <reportElement x="0" y="0" width="185" height="20"/>
+                <text><![CDATA[id]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="185" y="0" width="185" height="20"/>
+                <text><![CDATA[title]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="370" y="0" width="185" height="20"/>
+                <text><![CDATA[content]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="0" width="185" height="20"/>
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="185" y="0" width="185" height="20"/>
+                <textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="370" y="0" width="185" height="20"/>
+                <textFieldExpression><![CDATA[$F{content}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>
