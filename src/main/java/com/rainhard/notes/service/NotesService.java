@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +23,7 @@ public class NotesService {
     @Autowired
     private NotesJdbcRepository notesJdbcRepository;
 
+
     public void addNotes(String title, String content){
         this.notesJdbcRepository.insertNote(title, content);
     }
@@ -34,10 +37,15 @@ public class NotesService {
     }
 
     public Optional<Notes> findNoteById(Long id){
-        return this.notesRepository.findOneNote(id);
+//        return this.notesRepository.findOneNote(id);
+        return this.notesJdbcRepository.getNotesById(id);
     }
 
     public int updateTitleAndContent(Long id, String title, String content){
         return this.notesRepository.updateTitleAndContent(id, title, content);
+    }
+
+    public List<Notes> getAllNotesJdbc(){
+        return notesJdbcRepository.getNote();
     }
 }
